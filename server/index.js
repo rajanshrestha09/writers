@@ -4,9 +4,12 @@ import 'dotenv/config'
 import routes from "./routes/route.js"
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import {connect} from './routes/database/dbconfig.js'
 
 
 const app = express();
+
+connect();
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
