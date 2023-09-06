@@ -6,13 +6,15 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 import {connect} from './routes/database/dbconfig.js'
 
-
 const app = express();
-
-connect();
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
+
+connect();//Database connection
+
+
+
 
 // Route to route.js
 app.use("/", routes);
