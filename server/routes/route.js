@@ -1,5 +1,6 @@
 //jshint esversion: 6
 import express from 'express';
+import User from './model/userModel.js'
 
 const router = express.Router();
 
@@ -26,8 +27,5 @@ router.post('/login', (req,res)=>{
         message: "hello"
     })
 })
-
-
-
 
 export default router;
