@@ -1,8 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
+import {axios} from 'axios'
 import Navbar from './Navbar';
 
 function Signup() {
+
+    const [signup, setSignup] = useState({
+        fname: "",
+        lname: "",
+        email: "",
+        username: "",
+        password: ""
+    })
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        console.log(value)
+        setSignup(prevValue => {
+            return {
+                ...prevValue,
+                [name]: value
+            }
+        })
+    }
+
+    function onClick() {
+
+    }
+
     return (
         <>
             <Navbar />
@@ -10,13 +35,13 @@ function Signup() {
                 <div className="d-flex flex-column align-items-center justify-content-center vh-100">
                     <div className=" rounded rounded-5 p-5 bg-primary">
                         <h1 className="text-center mb-4 text-light">Sign Up</h1>
-                        <form className="d-flex flex-column">
+                        <form className="d-flex flex-column" action={onClick} method='POST'>
                             <div className="row g-3 align-self-end mt-1 ">
                                 <div className="col-auto">
                                     <label forName="fname" className="col-form-label text-light">First Name</label>
                                 </div>
                                 <div className="col-auto">
-                                    <input type="text" id="fname" className="form-control" aria-describedby="passwordHelpInline" />
+                                    <input type="text" name="fname" id="fname" value={signup.fname} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
                                 </div>
                             </div>
                             <div className="row g-3 align-self-end mt-1">
@@ -24,7 +49,7 @@ function Signup() {
                                     <label forName="lname" className="col-form-label text-light">Last Name</label>
                                 </div>
                                 <div className="col-auto">
-                                    <input type="text" id="lname" className="form-control" aria-describedby="passwordHelpInline" />
+                                    <input type="text" name="lname" id="lname" value={signup.lname} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
                                 </div>
                             </div>
                             <div className="row g-3 align-self-end mt-1">
@@ -32,7 +57,7 @@ function Signup() {
                                     <label forName="email" className="col-form-label text-light">Email</label>
                                 </div>
                                 <div className="col-auto">
-                                    <input type="email" id="email" className="form-control" aria-describedby="passwordHelpInline" />
+                                    <input type="email" name="email" id="email" value={signup.email} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
                                 </div>
                             </div>
                             <div className="row g-3 align-self-end mt-1">
@@ -40,7 +65,7 @@ function Signup() {
                                     <label forName="username" className="col-form-label text-light">Username</label>
                                 </div>
                                 <div className="col-auto">
-                                    <input type="text" id="username" className="form-control" aria-describedby="passwordHelpInline" />
+                                    <input type="text" name="username" id="username" value={signup.username} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
                                 </div>
                             </div>
                             <div className="row g-3 align-self-end mt-1">
@@ -48,7 +73,7 @@ function Signup() {
                                     <label forName="password" className="col-form-label text-light">Password</label>
                                 </div>
                                 <div className="col-auto">
-                                    <input type="password" id="password" className="form-control" aria-describedby="passwordHelpInline" />
+                                    <input type="password" name="password" id="password" value={signup.password} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
                                 </div>
                             </div>
                             <div className="row g-3 align-self-center mt-1 ">
