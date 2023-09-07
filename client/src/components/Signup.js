@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
-import {axios} from 'axios'
+import  axios  from 'axios'
 import Navbar from './Navbar';
 
 function Signup() {
@@ -24,7 +24,10 @@ function Signup() {
         })
     }
 
-    function onClick() {
+    async function onsubmit() {
+        console.log('Here')
+        const response = await axios.post('http://localhost:8080/signup', signup);
+        console.log(response)
 
     }
 
@@ -35,7 +38,7 @@ function Signup() {
                 <div className="d-flex flex-column align-items-center justify-content-center vh-100">
                     <div className=" rounded rounded-5 p-5 bg-primary">
                         <h1 className="text-center mb-4 text-light">Sign Up</h1>
-                        <form className="d-flex flex-column" action={onClick} method='POST'>
+                        <form className="d-flex flex-column" onSubmit={onsubmit}>
                             <div className="row g-3 align-self-end mt-1 ">
                                 <div className="col-auto">
                                     <label forName="fname" className="col-form-label text-light">First Name</label>
@@ -77,7 +80,7 @@ function Signup() {
                                 </div>
                             </div>
                             <div className="row g-3 align-self-center mt-1 ">
-                                <button type="submit" className="btn btn-info text-dark">Secondary</button>
+                                <button type="submit" className="btn btn-info text-dark">Sign Up</button>
                             </div>
                         </form>
 
