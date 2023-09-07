@@ -1,4 +1,4 @@
-//jshint esversion: 6
+//jshint esversion:6
 import express from 'express'
 import 'dotenv/config'
 import routes from "./routes/route.js"
