@@ -3,14 +3,8 @@ import express from 'express';
 import User from '../model/userModel.js'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import cookieParser from 'cookie-parser';
-
-
-const app = express();
-app.use(cookieParser());
 
 const router = express.Router();
-
 
 router.get('/', (req, res) => {
     res.send("Hello World")
@@ -91,7 +85,6 @@ router.post('/login', async (req, res) => {
                 status: 400
             })
         }
-
         console.log('validpassword')
         // token function
         const tokenData = {
@@ -99,34 +92,32 @@ router.post('/login', async (req, res) => {
             username: user_name.username,
             email: user_name.email
         }
-
         console.log(tokenData)
         // create token
         const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {
             expiresIn: "1h"
         })
-
         console.log(token)
+        res.header('Content-Type', 'application/json;charset=UTF-8')
+        res.header('Access-Control-Allow-Credentials', true)
+        res.header(
+            'Access-Control-Allow-Headers',
+            'Origin, X-Requested-With, Content-Type, Accept'
+        )
+
         res.cookie('token', token, {
             httpOnly: true
         })
-
-        console.log("token created and send")
-        res.json({
-            message: "token Created success"
-        })
-
-
-
+        return res.json({
+            message: "success",
+            status: 200
+        });
     } catch (error) {
         return res.json({
             error: error.message,
             status: 500
         })
     }
-
-
-
 })
 
 export default router;

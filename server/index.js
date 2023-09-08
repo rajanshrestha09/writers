@@ -4,12 +4,17 @@ import 'dotenv/config'
 import routes from "./routes/route.js"
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import {connect} from './database/dbconfig.js'
+import { connect } from './database/dbconfig.js'
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(cors())
+app.use(express.json())
+// app.use(bodyParser.urlencoded({extended:true}))
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+})
+)
 
 connect();//Database connection
 
@@ -22,6 +27,6 @@ app.use('/signup', routes)
 app.use('/login', routes)
 
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT, () => {
     console.log(`Server started at port number ${process.env.PORT}`)
 })
