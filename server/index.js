@@ -24,6 +24,7 @@ connect();//Database connection
 app.use("/", routes);
 app.use('/signup', routes)
 app.use('/login', routes)
+app.use('/pofile', routes)
 
 
 

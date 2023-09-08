@@ -15,6 +15,7 @@ router.get('/login', getRequest)
 router.get('/signup', getRequest)
 router.post('/signup', signupPost)
 router.post('/login', login)
+router.get('/profile',getRequest)
 
 
 export default router;
