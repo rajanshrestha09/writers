@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios'
 import Navbar from './Navbar';
-
+import { useNavigate } from 'react-router-dom';
 function Signup() {
-
+    const navigate = useNavigate();
     const [signup, setSignup] = useState({
         fname: "",
         lname: "",
@@ -24,11 +24,13 @@ function Signup() {
         })
     }
 
-    async function onsubmit() {
+    async function onsubmit(event) {
+        event.preventDefault()
         console.log('Here')
-        const {response} = await axios.post('http://localhost:8080/signup', signup,
+        const response = await axios.post('http://localhost:8080/signup', signup,
             { headers: { 'content-type': 'application/x-www-form-urlencoded' } });
-        console.log({response})
+        console.log(response)
+        navigate('/login')
 
     }
 
