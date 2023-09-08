@@ -21,7 +21,6 @@ router.post('/signup', async (req, res) => {
                 status: 400
             })
         }
-
         // Hash a password
         console.log('1')
         const salt = bcrypt.genSaltSync(10);
@@ -40,7 +39,6 @@ router.post('/signup', async (req, res) => {
         console.log('3')
         const savedUser = await newUser.save();
         console.log(savedUser)
-
         return res.json(
             {
                 message: 'User created successfully',
@@ -48,9 +46,6 @@ router.post('/signup', async (req, res) => {
                 savedUser
             }
         )
-
-        console.log('4')
-
     } catch (error) {
         return res.json(
             {
@@ -70,7 +65,7 @@ router.post('/login', async (req, res) => {
         // Check if user already exists
         const user_name = await User.findOne({ username });
         console.log(user_name)
-
+        //////////
         if (!user_name) {
             return res.json({
                 error: 'User not exists',
