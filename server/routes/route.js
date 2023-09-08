@@ -2,7 +2,10 @@
 import express from 'express';
 import User from '../model/userModel.js'
 import bcrypt from 'bcryptjs';
-import token from '../tokenCreate/token.js';
+import jwt from 'jsonwebtoken';
+
+
+
 
 const router = express.Router();
 
@@ -24,10 +27,10 @@ router.post('/signup', async (req, res) => {
         }
 
         // Hash a password
-
+        console.log('1')
         const salt = bcrypt.genSaltSync(10);
         const hashPassword = await bcrypt.hash(password, salt) // Store hash in your password DB.
-
+        console.log('2')
         //Create new user
         const newUser = new User(
             {
@@ -38,7 +41,7 @@ router.post('/signup', async (req, res) => {
                 password: hashPassword
             }
         )
-
+        console.log('3')
         const savedUser = await newUser.save();
         console.log(savedUser)
 
@@ -49,6 +52,8 @@ router.post('/signup', async (req, res) => {
                 savedUser
             }
         )
+
+        console.log('4')
 
     } catch (error) {
         return res.json(
@@ -64,10 +69,11 @@ router.post('/signup', async (req, res) => {
 })
 router.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { username, password } = await req.body;
         console.log(username)
         // Check if user already exists
         const user_name = await User.findOne({ username });
+        console.log(user_name)
 
         if (!user_name) {
             return res.json({
@@ -83,8 +89,32 @@ router.post('/login', async (req, res) => {
                 status: 400
             })
         }
+
+        console.log('validpassword')
         // Call token function
-        token(user_name, res)
+        const tokenData = {
+            id: user_name.id,
+            username: user_name.username,
+            email: user_name.email
+        }
+
+        console.log(tokenData)
+        // create token
+        const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {
+            expiresIn: "1h"
+        })
+
+        console.log(token)
+        res.cookie('authcookie', token, {
+            httpOnly: true
+        })
+
+        console.log("token created and send")
+        res.json({
+            message: "token Created success"
+        })
+
+
 
     } catch (error) {
         return res.json({
