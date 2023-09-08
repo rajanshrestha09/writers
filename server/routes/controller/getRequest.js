@@ -5,7 +5,7 @@ const app = express()
 
 app.use(cookieParser())
 
-const getReuest = (req, res) => {
+const getRequest = (req, res) => {
     const path = req.url
     const token = req.cookies.token
     console.log("Next console:", path, token)
@@ -27,4 +27,4 @@ const getReuest = (req, res) => {
 
 }
 
-export default getReuest;
+export default getRequest;
