@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios'
 import Navbar from './Navbar';
@@ -33,6 +33,20 @@ function Signup() {
         navigate('/login')
 
     }
+
+    useEffect(() => {
+        const checked = async () => {
+            const response = await axios.get('http://localhost:8080/signup', { headers: { 'content-type': 'application/json' }, withCredentials: true })
+            console.log(response.data)
+            if (response.data.status === 200) {
+                navigate('/profile')
+            }
+            if (response.data.status === 400) {
+                navigate('/signup')
+            }
+        }
+        checked()
+    }, [])
 
     return (
         <>
