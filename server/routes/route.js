@@ -3,9 +3,11 @@ import express from 'express';
 import User from '../model/userModel.js'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
 
 
-
+const app = express();
+app.use(cookieParser());
 
 const router = express.Router();
 
@@ -91,7 +93,7 @@ router.post('/login', async (req, res) => {
         }
 
         console.log('validpassword')
-        // Call token function
+        // token function
         const tokenData = {
             id: user_name.id,
             username: user_name.username,
@@ -105,7 +107,7 @@ router.post('/login', async (req, res) => {
         })
 
         console.log(token)
-        res.cookie('authcookie', token, {
+        res.cookie('token', token, {
             httpOnly: true
         })
 
