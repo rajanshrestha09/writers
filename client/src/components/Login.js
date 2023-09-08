@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Login() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [login, setLogin] = useState({
         username: "",
         password: ""
@@ -23,12 +23,20 @@ function Login() {
         })
     }
 
-    async function onsubmit() {
-        console.log('Here')
-        const { response } = await axios.post('http://localhost:8080/login', login,
-            { headers: { 'content-type': 'application/x-www-form-urlencoded' } });
-        console.log({ response })
-        navigate('/profile')
+    async function onsubmit(event) {
+        try {
+            event.preventDefault()
+            console.log('Here')
+            const response = await axios.post('http://localhost:8080/login', login,
+                { headers: { 'content-type': 'application/json' }, withCredentials:true });
+                console.log(response.data);
+                if(response.data.status === 200){
+                    navigate('/profile')
+                }
+                
+        } catch(error) {
+            console.log('Login failed', error.message);
+        }
 
     }
 
