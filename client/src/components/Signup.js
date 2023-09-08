@@ -28,7 +28,7 @@ function Signup() {
         event.preventDefault()
         console.log('Here')
         const response = await axios.post('http://localhost:8080/signup', signup,
-            { headers: { 'content-type': 'application/x-www-form-urlencoded' } });
+            { headers: { 'content-type': 'application/json' } });
         console.log(response)
         navigate('/login')
 
@@ -44,7 +44,7 @@ function Signup() {
                         <form className="d-flex flex-column" onSubmit={onsubmit}>
                             <div className="row g-3 align-self-end mt-1 ">
                                 <div className="col-auto">
-                                    <label forName="fname" className="col-form-label text-light">First Name</label>
+                                    <label forname="fname" className="col-form-label text-light">First Name</label>
                                 </div>
                                 <div className="col-auto">
                                     <input type="text" name="fname" id="fname" value={signup.fname} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
@@ -52,7 +52,7 @@ function Signup() {
                             </div>
                             <div className="row g-3 align-self-end mt-1">
                                 <div className="col-auto">
-                                    <label forName="lname" className="col-form-label text-light">Last Name</label>
+                                    <label forname="lname" className="col-form-label text-light">Last Name</label>
                                 </div>
                                 <div className="col-auto">
                                     <input type="text" name="lname" id="lname" value={signup.lname} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
@@ -60,7 +60,7 @@ function Signup() {
                             </div>
                             <div className="row g-3 align-self-end mt-1">
                                 <div className="col-auto">
-                                    <label forName="email" className="col-form-label text-light">Email</label>
+                                    <label forname="email" className="col-form-label text-light">Email</label>
                                 </div>
                                 <div className="col-auto">
                                     <input type="email" name="email" id="email" value={signup.email} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
@@ -68,7 +68,7 @@ function Signup() {
                             </div>
                             <div className="row g-3 align-self-end mt-1">
                                 <div className="col-auto">
-                                    <label forName="username" className="col-form-label text-light">Username</label>
+                                    <label forname="username" className="col-form-label text-light">Username</label>
                                 </div>
                                 <div className="col-auto">
                                     <input type="text" name="username" id="username" value={signup.username} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
@@ -76,7 +76,7 @@ function Signup() {
                             </div>
                             <div className="row g-3 align-self-end mt-1">
                                 <div className="col-auto">
-                                    <label forName="password" className="col-form-label text-light">Password</label>
+                                    <label forname="password" className="col-form-label text-light">Password</label>
                                 </div>
                                 <div className="col-auto">
                                     <input type="password" name="password" id="password" value={signup.password} onChange={handleChange} className="form-control" aria-describedby="passwordHelpInline" />
