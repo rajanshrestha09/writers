@@ -4,6 +4,7 @@ import axios from 'axios'
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
+
 function Login() {
     const navigate = useNavigate()
     const [login, setLogin] = useState({
@@ -24,8 +25,9 @@ function Login() {
 
     async function onsubmit() {
         console.log('Here')
-        const response = await axios.post('http://localhost:8080/login', login,{headers: {'content-type': 'application/x-www-form-urlencoded'}});
-        console.log(response.data)
+        const { response } = await axios.post('http://localhost:8080/login', login,
+            { headers: { 'content-type': 'application/x-www-form-urlencoded' } });
+        console.log({ response })
         navigate('/profile')
 
     }

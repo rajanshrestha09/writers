@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
-import  axios  from 'axios'
+import axios from 'axios'
 import Navbar from './Navbar';
 
 function Signup() {
@@ -26,8 +26,9 @@ function Signup() {
 
     async function onsubmit() {
         console.log('Here')
-        const response = await axios.post('http://localhost:8080/signup', signup);
-        console.log(response)
+        const {response} = await axios.post('http://localhost:8080/signup', signup,
+            { headers: { 'content-type': 'application/x-www-form-urlencoded' } });
+        console.log({response})
 
     }
 
