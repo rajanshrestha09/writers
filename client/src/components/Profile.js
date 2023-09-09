@@ -14,7 +14,7 @@ const Profile = () => {
   console.log(user)
   useEffect(() => {
     const checked = async () => {
-      const response = await axios.get('http://localhost:8080/profile', { headers: { 'content-type': 'application/json' }, withCredentials: true })
+      const response = await axios.get('http://localhost:8080/profile', { headers: { 'content-type': 'application/json' }, withCredentials: true });
       // console.log(response.data)
       if (response.data.status === 200) {
         const user_details = response.data.user
@@ -34,13 +34,29 @@ const Profile = () => {
     checked()
   }, [])
 
+  const handlelogout = async (event) => {
+    try {
+      event.preventDefault()
+      console.log('Here')
+      const response = await axios.get('http://localhost:8080/logout', { headers: { 'content-type': 'application/json' }, withCredentials: true });
+      console.log('here 2')
+      console.log(response.data);
+      navigate('/login')
+
+
+    } catch (error) {
+      console.log('Login failed', error.message);
+    }
+  }
+
   return (
     <>
       <div>Profile</div>
-      <h1>{user.firstname}</h1>
-      <h1>{user.lastname}</h1>
-      <h1>{user.email}</h1>
-      
+      <h1>First Name: {user.firstname} </h1>
+      <h1>Last Name: {user.lastname}</h1>
+      <h1>Email: {user.email}</h1>
+
+      <button type="button" className="btn btn-primary ms-5" onClick={handlelogout}>Logout</button>
     </>
 
 
