@@ -17,10 +17,8 @@ const getRequest = async (req, res) => {
         // console.log('Token_id: ',tokenvalue.id)
         const username = tokenvalue.username;
         // console.log(username)
-
-       const user = await User.findOne({username})
-    //    console.log('From database', user)
-        
+        const user = await User.findOne({ username })
+                //    console.log('From database', user)
         res.json({
             message: "has token",
             status: 200,
