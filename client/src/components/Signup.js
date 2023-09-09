@@ -27,7 +27,7 @@ function Signup() {
     async function onsubmit(event) {
         event.preventDefault()
         console.log('Here')
-        const response = await axios.post('http://localhost:8080/signup', signup,
+        const response = await axios.post('https://writers-8a41.onrender.com/', signup,
             { headers: { 'content-type': 'application/json' } });
         console.log(response)
         navigate('/login')
@@ -36,7 +36,7 @@ function Signup() {
 
     useEffect(() => {
         const checked = async () => {
-            const response = await axios.get('http://localhost:8080/signup', { headers: { 'content-type': 'application/json' }, withCredentials: true })
+            const response = await axios.get('https://writers-8a41.onrender.com/', { headers: { 'content-type': 'application/json' }, withCredentials: true })
             console.log(response.data)
             if (response.data.status === 200) {
                 navigate('/profile')
