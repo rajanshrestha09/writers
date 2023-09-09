@@ -14,7 +14,7 @@ function Login() {
 
     useEffect(() => {
         const checked = async () => {
-            const response = await axios.get('http://localhost:8080/login', { headers: { 'content-type': 'application/json' }, withCredentials: true })
+            const response = await axios.get('https://writers-8a41.onrender.com/login', { headers: { 'content-type': 'application/json' }, withCredentials: true })
             console.log(response.data)
             if (response.data.status === 200) {
                 navigate('/profile')
@@ -43,7 +43,7 @@ function Login() {
         try {
             event.preventDefault()
             console.log('Here')
-            const response = await axios.post('http://localhost:8080/login', login,
+            const response = await axios.post('https://writers-8a41.onrender.com/login', login,
                 { headers: { 'content-type': 'application/json' }, withCredentials: true });
             console.log(response.data);
             if (response.data.status === 200) {
