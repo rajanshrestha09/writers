@@ -14,7 +14,7 @@ function Profile(){
   // console.log(user)
   useEffect(() => {
     const checked = async () => {
-      const response = await axios.get('http://localhost:8080/profile', { headers: { 'content-type': 'application/json' }, withCredentials: true });
+      const response = await axios.get('https://writers-8a41.onrender.com/profile', { headers: { 'content-type': 'application/json' }, withCredentials: true });
       // console.log(response.data)
       if (response.data.status === 200) {
         const user_details = response.data.user
@@ -37,7 +37,7 @@ function Profile(){
       event.preventDefault()
       // console.log('Here')
       // const response = 
-      await axios.get('http://localhost:8080/logout', { headers: { 'content-type': 'application/json' }, withCredentials: true });
+      await axios.get('https://writers-8a41.onrender.com/logout', { headers: { 'content-type': 'application/json' }, withCredentials: true });
       // console.log(response.data);
       navigate('/login')
 
