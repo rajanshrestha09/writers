@@ -8,6 +8,7 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(()=>{
     navigate('/login')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 }
 

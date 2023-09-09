@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios'
@@ -31,6 +30,7 @@ const Profile = () => {
       }
     }
     checked()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handlelogout = async (event) => {
