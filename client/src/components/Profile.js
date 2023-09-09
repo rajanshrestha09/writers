@@ -4,8 +4,8 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
-const Profile = () => {
-  const navigate = useNavigate()
+function Profile(){
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     firstname: '',
     lastname: '',
@@ -30,7 +30,6 @@ const Profile = () => {
       }
     }
     checked()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handlelogout = async (event) => {

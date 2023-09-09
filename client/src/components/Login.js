@@ -12,19 +12,19 @@ function Login() {
         password: ""
     })
 
-    useEffect( ()=>{
-        const checked = async ()=>{
-          const response =  await axios.get('http://localhost:8080/login', { headers: { 'content-type': 'application/json' }, withCredentials:true })
-          console.log(response.data)
-          if(response.data.status ===200){
-            navigate('/profile')
-          }
-          if(response.data.status === 400){
-            navigate('/login')
-          }
+    useEffect(() => {
+        const checked = async () => {
+            const response = await axios.get('http://localhost:8080/login', { headers: { 'content-type': 'application/json' }, withCredentials: true })
+            console.log(response.data)
+            if (response.data.status === 200) {
+                navigate('/profile')
+            }
+            if (response.data.status === 400) {
+                navigate('/login')
+            }
         }
-       checked()
-    },[])
+        checked()
+    }, [])
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -44,13 +44,13 @@ function Login() {
             event.preventDefault()
             console.log('Here')
             const response = await axios.post('http://localhost:8080/login', login,
-                { headers: { 'content-type': 'application/json' }, withCredentials:true });
-                console.log(response.data);
-                if(response.data.status === 200){
-                    navigate('/profile')
-                }
-                
-        } catch(error) {
+                { headers: { 'content-type': 'application/json' }, withCredentials: true });
+            console.log(response.data);
+            if (response.data.status === 200) {
+                navigate('/profile')
+            }
+
+        } catch (error) {
             console.log('Login failed', error.message);
         }
 
