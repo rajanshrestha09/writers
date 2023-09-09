@@ -6,10 +6,6 @@ export const getDataFromToken = (token) =>{
         // console.log('Decoded token: ', decodedToken)
         return decodedToken;
     } catch (error) {
-        res.json(
-            {
-                error: error.message
-            }
-        )
+        console.log('Error from token: ', error.message)
     }
 }
